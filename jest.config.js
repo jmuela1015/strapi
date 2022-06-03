@@ -1,8 +1,10 @@
 'use strict';
 
-const baseConfig = require('./jest.base-config');
+const baseConfig = require('../../../jest.base-config');
+const pkg = require('./package');
 
 module.exports = {
   ...baseConfig,
-  projects: ['<rootDir>/packages/**/jest.config.js'],
+  displayName: (pkg.strapi && pkg.strapi.name) || pkg.name,
+  roots: [__dirname],
 };
