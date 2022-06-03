@@ -1,12 +1,8 @@
 <p align="center">
-  <a href="https://strapi.io/#gh-light-mode-only">
+  <a href="https://strapi.io">
     <img src="https://strapi.io/assets/strapi-logo-dark.svg" width="318px" alt="Strapi logo" />
   </a>
-  <a href="https://strapi.io/#gh-dark-mode-only">
-    <img src="https://strapi.io/assets/strapi-logo-light.svg" width="318px" alt="Strapi logo" />
-  </a>
 </p>
-
 <h3 align="center">API creation made simple, secure and fast.</h3>
 <p align="center">The most advanced open-source headless CMS to build powerful APIs with no effort.</p>
 <p align="center"><a href="https://strapi.io/demo">Try live demo</a></p>
@@ -118,6 +114,7 @@ For general help using Strapi, please refer to [the official Strapi documentatio
 - [Discord](https://discord.strapi.io) (For live discussion with the Community and Strapi team)
 - [GitHub](https://github.com/strapi/strapi) (Bug reports, Contributions)
 - [Community Forum](https://forum.strapi.io) (Questions and Discussions)
+- [Academy](https://academy.strapi.io) (Learn the fundamentals of Strapi)
 - [ProductBoard](https://portal.productboard.com/strapi/tabs/2-under-consideration) (Roadmap, Feature requests)
 - [Twitter](https://twitter.com/strapijs) (Get the news fast)
 - [Facebook](https://www.facebook.com/Strapi-616063331867161)
