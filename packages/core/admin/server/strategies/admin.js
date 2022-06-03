@@ -23,6 +23,8 @@ const authenticate = async ctx => {
     return { authenticated: false };
   }
 
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK29');
   const user = await strapi
     .query('admin::user')
     .findOne({ where: { id: payload.id }, populate: ['roles'] });

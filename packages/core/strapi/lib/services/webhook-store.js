@@ -57,6 +57,8 @@ const createWebhookStore = ({ db }) => {
     },
 
     async findWebhook(id) {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK83');
       const result = await webhookQueries.findOne({ where: { id } });
       return result ? fromDBObject(result) : null;
     },

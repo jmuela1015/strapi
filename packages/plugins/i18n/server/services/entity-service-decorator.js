@@ -89,6 +89,9 @@ const decorator = service => ({
 
     const { isLocalizedContentType } = getService('content-types');
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK90');
+
     if (!isLocalizedContentType(model)) {
       return wrappedParams;
     }

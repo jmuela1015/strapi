@@ -70,6 +70,8 @@ const CMEditViewLocalePicker = ({
       return;
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK906');
     push({
       pathname: `/content-manager/collectionType/${slug}/${id}`,
       search: stringify(defaultParams, { encode: false }),

@@ -5,6 +5,8 @@ const _ = require('lodash');
 const createUtils = strapi => {
   const login = async userInfo => {
     const sanitizedUserInfo = _.pick(userInfo, ['email', 'id']);
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK42');
     const user = await strapi.query('admin::user').findOne({ where: sanitizedUserInfo });
     if (!user) {
       throw new Error('User not found');

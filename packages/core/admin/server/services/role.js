@@ -74,6 +74,8 @@ const create = async attributes => {
  * @returns {Promise<role>}
  */
 const findOne = (params = {}, populate) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK28');
   return strapi.query('admin::role').findOne({ where: params, populate });
 };
 
@@ -84,6 +86,8 @@ const findOne = (params = {}, populate) => {
  * @returns {Promise<role>}
  */
 const findOneWithUsersCount = async (params = {}, populate) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK29');
   const role = await strapi.query('admin::role').findOne({ where: params, populate });
 
   if (role) {
@@ -100,6 +104,8 @@ const findOneWithUsersCount = async (params = {}, populate) => {
  * @returns {Promise<array>}
  */
 const find = (params = {}, populate) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK94');
   return strapi.query('admin::role').findMany({ where: params, populate });
 };
 
@@ -146,6 +152,8 @@ const update = async (params, attributes) => {
  * @returns {Promise<boolean>}
  */
 const exists = async (params = {}) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK95');
   const count = await strapi.query('admin::role').count({ where: params });
   return count > 0;
 };
@@ -156,6 +164,8 @@ const exists = async (params = {}) => {
  * @returns {Promise<number>}
  */
 const count = async (params = {}) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK96');
   return strapi.query('admin::role').count(params);
 };
 

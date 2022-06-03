@@ -70,6 +70,8 @@ module.exports = {
 
     if (!entity) {
       const sanitizedBody = await sanitizeFn(body);
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK200');
       const newEntity = await entityManager.create(sanitizedBody, model, { params: query });
       ctx.body = await permissionChecker.sanitizeOutput(newEntity);
 

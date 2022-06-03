@@ -84,6 +84,8 @@ const update = async (params, attributes) => {
  * @returns {Promise<Permission[]>}
  */
 const findMany = async (params = {}) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK93');
   const rawPermissions = await strapi.query('admin::permission').findMany(params);
 
   return permissionDomain.toPermission(rawPermissions);
@@ -193,6 +195,8 @@ const ensureBoundPermissionsInDatabase = async () => {
   }
 
   const contentTypes = Object.values(strapi.contentTypes);
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK27');
   const editorRole = await strapi.query('admin::role').findOne({
     where: { code: EDITOR_CODE },
   });

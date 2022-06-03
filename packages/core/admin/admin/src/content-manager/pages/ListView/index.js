@@ -204,6 +204,8 @@ function ListView({
 
     const shouldSendRequest = canRead;
     const requestUrl = getRequestUrl(`collection-types/${slug}${params}`);
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK73 ' + getRequestUrl(requestUrl));
 
     if (shouldSendRequest && requestUrl.includes(requestUrlRef.current)) {
       fetchData(requestUrl, source);

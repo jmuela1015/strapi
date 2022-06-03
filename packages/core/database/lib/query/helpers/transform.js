@@ -5,6 +5,25 @@ const _ = require('lodash/fp');
 const types = require('../../types');
 const { createField } = require('../../fields');
 
+const debug2 = require('debug')('metrik'); // MTRK
+const dumpObject = (prefix, obj, indent) => {
+  const indentStr = new Array(indent + 1).join(' ');
+  if (!obj) {
+    debug2(prefix + ' ' + indentStr + 'NULL/UNDEFINED');
+    return;
+  }
+  Object.keys(obj).forEach(function (key) {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      debug2(prefix + ' ' + indentStr + key);
+      dumpObject(prefix, value, indent + 2);
+    } else {
+      debug2(prefix + ' ' + indentStr + key + '=' + value);
+    }
+  });
+}
+
 const fromRow = (meta, row) => {
   if (Array.isArray(row)) {
     return row.map(singleRow => fromRow(meta, singleRow));
@@ -15,6 +34,8 @@ const fromRow = (meta, row) => {
   if (_.isNil(row)) {
     return null;
   }
+
+  dumpObject('MTRK910BORKED', row, 0);
 
   const obj = {};
 

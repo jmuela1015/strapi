@@ -12,6 +12,8 @@ const useFetchPermissionsLayout = id => {
         type: 'GET_DATA',
       });
 
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK92 ' + id);
       const { data } = await request('/admin/permissions', {
         method: 'GET',
         params: { role: id },

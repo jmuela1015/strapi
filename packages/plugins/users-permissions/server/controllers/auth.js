@@ -56,6 +56,8 @@ module.exports = {
       }
 
       // Check if the user exists.
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK52');
       const user = await strapi.query('plugin::users-permissions.user').findOne({ where: query });
 
       if (!user) {

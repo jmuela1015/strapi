@@ -148,6 +148,8 @@ const hasEditableAttribute = (schema, name) => {
 };
 
 const findFirstStringAttribute = schema => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK301' + schema);
   return Object.keys(schema.attributes || {}).find(key => {
     const { type } = schema.attributes[key];
     return type === 'string' && key !== 'id';

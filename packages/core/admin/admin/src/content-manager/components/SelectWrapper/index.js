@@ -241,6 +241,8 @@ function SelectWrapper({
   };
 
   const to = `/content-manager/collectionType/${targetModel}/${value ? value.id : null}`;
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK905 ' + to);
 
   const searchToPersist = stringify(buildParams(query, paramsToKeep), { encode: false });
 

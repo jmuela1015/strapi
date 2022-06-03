@@ -42,6 +42,8 @@ module.exports = ({ strapi }) => ({
   },
 
   async getRole(roleID) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK25');
     const role = await strapi
       .query('plugin::users-permissions.role')
       .findOne({ where: { id: roleID }, populate: ['permissions'] });
@@ -81,6 +83,8 @@ module.exports = ({ strapi }) => ({
   },
 
   async updateRole(roleID, data) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK46');
     const role = await strapi
       .query('plugin::users-permissions.role')
       .findOne({ where: { id: roleID }, populate: ['permissions'] });
@@ -143,6 +147,8 @@ module.exports = ({ strapi }) => ({
   },
 
   async deleteRole(roleID, publicRoleID) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK47');
     const role = await strapi
       .query('plugin::users-permissions.role')
       .findOne({ where: { id: roleID }, populate: ['users', 'permissions'] });

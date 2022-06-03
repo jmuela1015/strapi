@@ -59,6 +59,8 @@ module.exports = ({ strapi }) => ({
    * @return {Promise}
    */
   fetch(params, populate) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK43');
     return strapi.query('plugin::users-permissions.user').findOne({ where: params, populate });
   },
 
@@ -67,6 +69,8 @@ module.exports = ({ strapi }) => ({
    * @return {Promise}
    */
   fetchAuthenticatedUser(id) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK44');
     return strapi
       .query('plugin::users-permissions.user')
       .findOne({ where: { id }, populate: ['role'] });

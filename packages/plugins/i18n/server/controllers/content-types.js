@@ -29,6 +29,8 @@ module.exports = {
     }
 
     let params = modelDef.kind === 'singleType' ? {} : { id };
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK97 ' + id);
 
     const entity = await strapi
       .query(model)

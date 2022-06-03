@@ -63,6 +63,8 @@ const nonExistingUserScenario = (ctx, next) => async (profile, provider) => {
     return ctx.redirect(redirectUrls.error);
   }
 
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK25');
   const defaultRole = await getService('role').findOne({ id: providers.defaultRole });
 
   // If the default role has been misconfigured, redirect with an error

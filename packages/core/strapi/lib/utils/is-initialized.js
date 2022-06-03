@@ -14,6 +14,8 @@ module.exports = async function isInitialized(strapi) {
     }
 
     // test if there is at least one admin
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK81');
     const anyAdministrator = await strapi.query('admin::user').findOne({ select: ['id'] });
 
     return !isNil(anyAdministrator);

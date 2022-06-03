@@ -46,6 +46,9 @@ module.exports = {
   },
 
   async findOne(ctx) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK90');
+
     const {
       state: { userAbility },
       params: { id },

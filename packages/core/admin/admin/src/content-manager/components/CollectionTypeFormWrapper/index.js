@@ -59,6 +59,8 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
       return null;
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK71 ' + getRequestUrl(`collection-types/${slug}/${origin || id}`));
     return getRequestUrl(`collection-types/${slug}/${origin || id}`);
   }, [slug, id, isCreatingEntry, origin]);
 
@@ -249,6 +251,8 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
 
   const onPost = useCallback(
     async (body, trackerProperty) => {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK72 ' + getRequestUrl(`collection-types/${slug}/${origin || id}`));
       const endPoint = `${getRequestUrl(`collection-types/${slug}`)}${rawQuery}`;
 
       try {

@@ -138,12 +138,16 @@ module.exports = ({ strapi }) => ({
   },
 
   find(opts, uid, populate) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
     const params = { ...opts, populate: getDeepPopulate(uid, populate) };
 
     return strapi.entityService.findMany(uid, params);
   },
 
   findPage(opts, uid, populate) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
     const params = { ...opts, populate: getBasePopulate(uid, populate) };
 
     return strapi.entityService.findPage(uid, params);
@@ -151,18 +155,26 @@ module.exports = ({ strapi }) => ({
 
   findWithRelationCounts(opts, uid, populate) {
     const counterPopulate = addCreatedByRolesPopulate(getCounterPopulate(uid, populate));
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
     const params = { ...opts, populate: counterPopulate };
 
     return strapi.entityService.findWithRelationCounts(uid, params);
   },
 
   async findOne(id, uid, populate) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
     const params = { populate: getDeepPopulate(uid, populate) };
 
+    debug2('MTRK31c');
     return strapi.entityService.findOne(uid, id, params);
   },
 
   async findOneWithCreatorRoles(id, uid, populate) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
+    debug2('MTRK32b');
     const entity = await this.findOne(id, uid, populate);
 
     if (!entity) {
@@ -180,6 +192,8 @@ module.exports = ({ strapi }) => ({
       publishData[PUBLISHED_AT_ATTRIBUTE] = null;
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
     const params = { data: publishData, populate: getDeepPopulate(uid) };
 
     return strapi.entityService.create(uid, params);
@@ -221,6 +235,8 @@ module.exports = ({ strapi }) => ({
 
     const data = { ...body, [PUBLISHED_AT_ATTRIBUTE]: new Date() };
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK200');
     const params = { data, populate: getDeepPopulate(uid) };
 
     return strapi.entityService.update(uid, entity.id, params);

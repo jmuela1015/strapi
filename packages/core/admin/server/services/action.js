@@ -16,6 +16,8 @@ const getAllowedActionsForRole = async roleId => {
   const { actionProvider } = getService('permission');
 
   if (!isNil(roleId)) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK26');
     const role = await getService('role').findOne({ id: roleId });
 
     if (!role) {

@@ -27,6 +27,8 @@ const createCollectionTypeService = ({ contentType }) => {
 
   return {
     async find(params = {}) {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK97');
       const fetchParams = this.getFetchParams(params);
 
       const paginationInfo = getPaginationInfo(fetchParams);
@@ -52,6 +54,8 @@ const createCollectionTypeService = ({ contentType }) => {
     },
 
     findOne(entityId, params = {}) {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK33');
       return strapi.entityService.findOne(uid, entityId, this.getFetchParams(params));
     },
 

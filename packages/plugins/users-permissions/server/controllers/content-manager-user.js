@@ -21,6 +21,8 @@ const ACTIONS = {
 };
 
 const findEntityAndCheckPermissions = async (ability, action, model, id) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK48');
   const entity = await strapi.query(userModel).findOne({
     where: { id },
     populate: [`${CREATED_BY_ATTRIBUTE}.roles`],
@@ -70,6 +72,8 @@ module.exports = {
 
     await validateCreateUserBody(ctx.request.body);
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK49');
     const userWithSameUsername = await strapi
       .query('plugin::users-permissions.user')
       .findOne({ where: { username } });
@@ -151,6 +155,8 @@ module.exports = {
     }
 
     if (_.has(body, 'username')) {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK50');
       const userWithSameUsername = await strapi
         .query('plugin::users-permissions.user')
         .findOne({ where: { username } });
@@ -161,6 +167,8 @@ module.exports = {
     }
 
     if (_.has(body, 'email') && advancedConfigs.unique_email) {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK51');
       const userWithSameEmail = await strapi
         .query('plugin::users-permissions.user')
         .findOne({ where: { email: _.toLower(email) } });

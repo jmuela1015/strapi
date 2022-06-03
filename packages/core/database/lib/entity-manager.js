@@ -108,11 +108,32 @@ const processData = (metadata, data = {}, { withDefaults = false } = {}) => {
   return obj;
 };
 
+const debug2 = require('debug')('metrik'); // MTRK
+const dumpObject = (prefix, obj, indent) => {
+  const indentStr = new Array(indent + 1).join(' ');
+  if (!obj) {
+    debug2(prefix + ' ' + indentStr + 'NULL/UNDEFINED');
+    return;
+  }
+  Object.keys(obj).forEach(function (key) {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      debug2(prefix + ' ' + indentStr + key);
+      dumpObject(prefix, value, indent + 2);
+    } else {
+      debug2(prefix + ' ' + indentStr + key + '=' + value);
+    }
+  });
+}
+
 const createEntityManager = db => {
   const repoMap = {};
 
   return {
     async findOne(uid, params) {
+      dumpObject('MTRK12', params, 0);
+
       await db.lifecycles.run('beforeFindOne', uid, { params });
 
       const result = await this.createQueryBuilder(uid)
@@ -129,6 +150,7 @@ const createEntityManager = db => {
     async findMany(uid, params) {
       await db.lifecycles.run('beforeFindMany', uid, { params });
 
+      dumpObject('MTRK13', params, 0);
       const result = await this.createQueryBuilder(uid)
         .init(params)
         .execute();
@@ -174,6 +196,7 @@ const createEntityManager = db => {
 
       // TODO: in case there is no select or populate specified return the inserted data ?
       // TODO: do not trigger the findOne lifecycles ?
+      dumpObject('MTRK11', params, 0);
       const result = await this.findOne(uid, {
         where: { id },
         select: params.select,
@@ -251,6 +274,7 @@ const createEntityManager = db => {
       await this.updateRelations(uid, id, data);
 
       // TODO: do not trigger the findOne lifecycles ?
+      dumpObject('MTRK10', params, 0);
       const result = await this.findOne(uid, {
         where: { id },
         select: params.select,
@@ -297,6 +321,7 @@ const createEntityManager = db => {
       }
 
       // TODO: do not trigger the findOne lifecycles ?
+      dumpObject('MTRK14', params, 0);
       const entity = await this.findOne(uid, {
         select: select && ['id'].concat(select),
         where,
@@ -809,6 +834,7 @@ const createEntityManager = db => {
     // TODO: support multiple relations at once with the populate syntax
     // TODO: add lifecycle events
     async populate(uid, entity, populate) {
+      dumpObject('MTRK18', params, 0);
       const entry = await this.findOne(uid, {
         select: ['id'],
         where: { id: entity.id },
@@ -829,6 +855,7 @@ const createEntityManager = db => {
         throw new Error('Invalid load. Expected a relational attribute');
       }
 
+      dumpObject('MTRK16', params, 0);
       const entry = await this.findOne(uid, {
         select: ['id'],
         where: { id: entity.id },

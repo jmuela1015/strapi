@@ -36,6 +36,8 @@ const createCollectionTypeController = ({ contentType }) => {
       const { id } = ctx.params;
       const { query } = ctx;
 
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK32');
       const entity = await strapi.service(uid).findOne(id, query);
       const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
 

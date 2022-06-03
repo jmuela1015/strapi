@@ -62,7 +62,7 @@ const createTable = meta => {
           referencedTable,
           referencedColumns: [referencedColumn],
           // NOTE: could allow configuration
-          onDelete: 'SET NULL',
+          onDelete: 'SET NULL', // MTRK CASCADE?
         });
 
         table.indexes.push({

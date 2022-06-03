@@ -10,6 +10,25 @@ const { resolvePolicies } = require('./policy');
 const getMethod = route => trim(toLower(route.method));
 const getPath = route => trim(route.path);
 
+const debug2 = require('debug')('metrik'); // MTRK
+const dumpObject = (prefix, obj, indent) => {
+  const indentStr = new Array(indent + 1).join(' ');
+  if (!obj) {
+    debug2(prefix + ' ' + indentStr + 'NULL/UNDEFINED');
+    return;
+  }
+  Object.keys(obj).forEach(function (key) {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      debug2(prefix + ' ' + indentStr + key);
+      dumpObject(prefix, value, indent + 2);
+    } else {
+      debug2(prefix + ' ' + indentStr + key + '=' + value);
+    }
+  });
+}
+
 const createRouteInfoMiddleware = routeInfo => (ctx, next) => {
   const route = {
     ...routeInfo,
@@ -49,6 +68,7 @@ const createAuthenticateMiddleware = strapi => async (ctx, next) => {
 };
 
 const returnBodyMiddleware = async (ctx, next) => {
+  debug2('MTRK123 ' + next);
   const values = await next();
 
   if (isNil(ctx.body) && !isNil(values)) {

@@ -76,6 +76,8 @@ module.exports = {
     const roleService = getService('role');
     const permissionService = getService('permission');
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK24');
     const role = await roleService.findOne({ id });
 
     if (!role) {

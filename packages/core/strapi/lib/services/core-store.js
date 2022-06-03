@@ -55,6 +55,8 @@ const createCoreStore = ({ db }) => {
         tag: tag || null,
       };
 
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK34');
       const data = await db.query('strapi::core-store').findOne({ where });
 
       if (!data) {
@@ -95,6 +97,8 @@ const createCoreStore = ({ db }) => {
         tag: tag || null,
       };
 
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK35');
       const data = await db.query('strapi::core-store').findOne({ where });
 
       if (data) {

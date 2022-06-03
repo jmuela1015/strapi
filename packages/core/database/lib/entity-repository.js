@@ -1,5 +1,24 @@
 'use strict';
 
+const debug2 = require('debug')('metrik'); // MTRK
+const dumpObject = (prefix, obj, indent) => {
+  const indentStr = new Array(indent + 1).join(' ');
+  if (!obj) {
+    debug2(prefix + ' ' + indentStr + 'NULL/UNDEFINED');
+    return;
+  }
+  Object.keys(obj).forEach(function (key) {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      debug2(prefix + ' ' + indentStr + key);
+      dumpObject(prefix, value, indent + 2);
+    } else {
+      debug2(prefix + ' ' + indentStr + key + '=' + value);
+    }
+  });
+}
+
 const withDefaultPagination = params => {
   const { page = 1, pageSize = 10, ...rest } = params;
 
@@ -13,14 +32,17 @@ const withDefaultPagination = params => {
 const createRepository = (uid, db) => {
   return {
     findOne(params) {
+      dumpObject('MTRK19', params, 0);
       return db.entityManager.findOne(uid, params);
     },
 
     findMany(params) {
+      dumpObject('MTRK15', params, 0);
       return db.entityManager.findMany(uid, params);
     },
 
     findWithCount(params) {
+      dumpObject('MTRK16', params, 0);
       return Promise.all([
         db.entityManager.findMany(uid, params),
         db.entityManager.count(uid, params),
@@ -39,6 +61,7 @@ const createRepository = (uid, db) => {
         offset,
       };
 
+      dumpObject('MTRK17', params, 0);
       const [results, total] = await Promise.all([
         db.entityManager.findMany(uid, query),
         db.entityManager.count(uid, query),

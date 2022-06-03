@@ -55,8 +55,12 @@ const getAndValidateRelatedEntity = async (relatedEntityId, model, locale) => {
   let relatedEntity;
 
   if (kind === 'singleType') {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK23');
     relatedEntity = await strapi.query(model).findOne({ populate: ['localizations'] });
   } else if (relatedEntityId) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK24');
     relatedEntity = await strapi
       .query(model)
       .findOne({ where: { id: relatedEntityId }, populate: ['localizations'] });

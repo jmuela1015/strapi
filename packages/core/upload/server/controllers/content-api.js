@@ -27,6 +27,8 @@ module.exports = {
     const {
       params: { id },
     } = ctx;
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK91 ' + id);
 
     const file = await getService('upload').findOne(id);
 

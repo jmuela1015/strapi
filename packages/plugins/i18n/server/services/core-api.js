@@ -101,6 +101,8 @@ const createCreateLocalizationHandler = contentType => async (args = {}) => {
 
   const { sanitizeInput, sanitizeInputFiles } = createSanitizer(contentType);
 
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK81b');
   const entry = isSingleType(contentType)
     ? await strapi.query(contentType.uid).findOne({ populate: ['localizations'] })
     : await strapi

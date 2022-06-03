@@ -562,6 +562,8 @@ module.exports = ({ strapi }) => {
           }
 
           // Retrieve default role.
+          const debug2 = require('debug')('metrik'); // MTRK
+          debug2('MTRK45');
           const defaultRole = await strapi
             .query('plugin::users-permissions.role')
             .findOne({ where: { type: advanced.default_role } });

@@ -110,6 +110,8 @@ const createDefaultImplementation = ({ strapi, db, eventHub, entityValidator }) 
     const query = transformParamsToQuery(uid, wrappedParams);
 
     if (kind === 'singleType') {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK36');
       return db.query(uid).findOne(query);
     }
 
@@ -143,6 +145,8 @@ const createDefaultImplementation = ({ strapi, db, eventHub, entityValidator }) 
 
     const query = transformParamsToQuery(uid, pickSelectionParams(wrappedParams));
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK37');
     return db.query(uid).findOne({ ...query, where: { id: entityId } });
   },
 
@@ -180,6 +184,8 @@ const createDefaultImplementation = ({ strapi, db, eventHub, entityValidator }) 
     // FIXME: upload in components
     if (files && Object.keys(files).length > 0) {
       await this.uploadFiles(uid, entity, files);
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK38');
       entity = await this.findOne(uid, entity.id, wrappedParams);
     }
 
@@ -194,6 +200,8 @@ const createDefaultImplementation = ({ strapi, db, eventHub, entityValidator }) 
 
     const model = strapi.getModel(uid);
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK39');
     const entityToUpdate = await db.query(uid).findOne({ where: { id: entityId } });
 
     if (!entityToUpdate) {
@@ -228,6 +236,8 @@ const createDefaultImplementation = ({ strapi, db, eventHub, entityValidator }) 
     // FIXME: upload in components
     if (files && Object.keys(files).length > 0) {
       await this.uploadFiles(uid, entity, files);
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK40');
       entity = await this.findOne(uid, entity.id, wrappedParams);
     }
 
@@ -242,6 +252,8 @@ const createDefaultImplementation = ({ strapi, db, eventHub, entityValidator }) 
     // select / populate
     const query = transformParamsToQuery(uid, pickSelectionParams(wrappedParams));
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK41');
     const entityToDelete = await db.query(uid).findOne({
       ...query,
       where: { id: entityId },

@@ -31,6 +31,9 @@ function ListItem({
 }) {
   const { formatMessage } = useIntl();
   const to = `/content-manager/collectionType/${targetModel}/${data.id}`;
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK904 ' + to);
+
   let cursor = 'pointer';
 
   if (isDisabled) {

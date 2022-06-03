@@ -121,6 +121,8 @@ const resetPasswordByEmail = async (email, password) => {
  * @param {int|string} userId user's id to look for
  */
 const isLastSuperAdminUser = async userId => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK30');
   const user = await findOne(userId);
   const superAdminRole = await getService('role').getSuperAdminWithUsersCount();
 
@@ -142,6 +144,8 @@ const exists = async (attributes = {}) => {
  * @returns {Promise<registrationInfo>} - Returns user email, firstname and lastname
  */
 const findRegistrationInfo = async registrationToken => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK31');
   const user = await strapi.query('admin::user').findOne({ where: { registrationToken } });
 
   if (!user) {
@@ -158,6 +162,8 @@ const findRegistrationInfo = async registrationToken => {
  * @param {Object} params.userInfo user info
  */
 const register = async ({ registrationToken, userInfo }) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK31b');
   const matchingUser = await strapi.query('admin::user').findOne({ where: { registrationToken } });
 
   if (!matchingUser) {
@@ -177,6 +183,8 @@ const register = async ({ registrationToken, userInfo }) => {
  * Find one user
  */
 const findOne = async (id, populate = ['roles']) => {
+  const debug2 = require('debug')('metrik'); // MTRK
+  debug2('MTRK20');
   return strapi.entityService.findOne('admin::user', id, { populate });
 };
 

@@ -4,6 +4,25 @@ const _ = require('lodash/fp');
 
 const helpers = require('./helpers');
 
+const debug2 = require('debug')('metrik'); // MTRK
+const dumpObject = (prefix, obj, indent) => {
+  const indentStr = new Array(indent + 1).join(' ');
+  if (!obj) {
+    debug2(prefix + ' ' + indentStr + 'NULL/UNDEFINED');
+    return;
+  }
+  Object.keys(obj).forEach(function (key) {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      debug2(prefix + ' ' + indentStr + key);
+      dumpObject(prefix, value, indent + 2);
+    } else {
+      debug2(prefix + ' ' + indentStr + key + '=' + value);
+    }
+  });
+}
+
 const createQueryBuilder = (uid, db) => {
   const meta = db.metadata.get(uid);
   const { tableName } = meta;
@@ -265,6 +284,7 @@ const createQueryBuilder = (uid, db) => {
       const qb = db.getConnection(aliasedTableName);
 
       if (this.shouldUseSubQuery()) {
+        debug2('MTRK908a');
         return this.runSubQuery();
       }
 
@@ -352,6 +372,7 @@ const createQueryBuilder = (uid, db) => {
         const qb = this.getKnexQuery();
 
         const rows = await qb;
+        dumpObject('MTRK911BORKED', rows, 0);
 
         if (state.populate && !_.isNil(rows)) {
           await helpers.applyPopulate(_.castArray(rows), state.populate, { qb: this, uid, db });

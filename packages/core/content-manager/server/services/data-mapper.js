@@ -18,6 +18,8 @@ const dtoFields = [
 
 module.exports = () => ({
   toContentManagerModel(contentType) {
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK300');
     return {
       ...contentType,
       apiID: contentType.modelName,

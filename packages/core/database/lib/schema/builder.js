@@ -197,8 +197,9 @@ const createHelpers = db => {
    * @param {Column} column
    */
   const createColumn = (tableBuilder, column) => {
-    const { type, name, args = [], defaultTo, unsigned, notNullable } = column;
+    let { type, name, args = [], defaultTo, unsigned, notNullable } = column;
 
+    if (type === 'jsonb') type = 'varchar'; // MTRK
     const col = tableBuilder[type](name, ...args);
 
     if (unsigned === true) {

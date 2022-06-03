@@ -56,6 +56,8 @@ module.exports = {
   async findOne(ctx) {
     const { id } = ctx.params;
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK84');
     const user = await getService('user').findOne(id);
 
     if (!user) {

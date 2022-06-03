@@ -7,8 +7,28 @@ const { setCreatorFields, pipeAsync } = require('@strapi/utils');
 const { getService, pickWritableAttributes } = require('../utils');
 const { validateBulkDeleteInput, validatePagination } = require('./validation');
 
+const debug2 = require('debug')('metrik'); // MTRK
+const dumpObject = (prefix, obj, indent) => {
+  const indentStr = new Array(indent + 1).join(' ');
+  if (!obj) {
+    debug2(prefix + ' ' + indentStr + 'NULL/UNDEFINED');
+    return;
+  }
+  Object.keys(obj).forEach(function (key) {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      debug2(prefix + ' ' + indentStr + key);
+      dumpObject(prefix, value, indent + 2);
+    } else {
+      debug2(prefix + ' ' + indentStr + key + '=' + value);
+    }
+  });
+}
+
 module.exports = {
   async find(ctx) {
+    debug2('MTRK61');
     const { userAbility } = ctx.state;
     const { model } = ctx.params;
     const { query } = ctx.request;
@@ -39,7 +59,16 @@ module.exports = {
 
   async findOne(ctx) {
     const { userAbility } = ctx.state;
-    const { model, id } = ctx.params;
+    let { model, id } = ctx.params;
+
+    debug2('MTRK60');
+    dumpObject('MTRK60a', ctx.params, 0);
+    if (id.includes(',')) { // MTRK
+      const ids = id.split(',');
+      if (ids.length === 2 && ids[0] === ids[1]) {
+        id = ids[0];
+      }
+    }
 
     const entityManager = getService('entity-manager');
     const permissionChecker = getService('permission-checker').create({ userAbility, model });
@@ -62,6 +91,7 @@ module.exports = {
   },
 
   async create(ctx) {
+    debug2('MTRK62');
     const { userAbility, user } = ctx.state;
     const { model } = ctx.params;
     const { body } = ctx.request;
@@ -103,6 +133,8 @@ module.exports = {
       return ctx.forbidden();
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK61');
     const entity = await entityManager.findOneWithCreatorRoles(id, model);
 
     if (!entity) {
@@ -136,6 +168,8 @@ module.exports = {
       return ctx.forbidden();
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK62');
     const entity = await entityManager.findOneWithCreatorRoles(id, model);
 
     if (!entity) {
@@ -162,6 +196,8 @@ module.exports = {
       return ctx.forbidden();
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK63');
     const entity = await entityManager.findOneWithCreatorRoles(id, model);
 
     if (!entity) {
@@ -192,6 +228,8 @@ module.exports = {
       return ctx.forbidden();
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK64');
     const entity = await entityManager.findOneWithCreatorRoles(id, model);
 
     if (!entity) {
@@ -264,6 +302,8 @@ module.exports = {
       return ctx.badRequest('Invalid target field');
     }
 
+    const debug2 = require('debug')('metrik'); // MTRK
+    debug2('MTRK65');
     const entity = await entityManager.findOneWithCreatorRoles(id, model);
 
     if (!entity) {
@@ -277,6 +317,8 @@ module.exports = {
     let relationList;
     // FIXME: load relations using query.load
     if (!assoc.inversedBy && !assoc.mappedBy) {
+      const debug2 = require('debug')('metrik'); // MTRK
+      debug2('MTRK22');
       const populatedEntity = await entityManager.findOne(id, model, [targetField]);
       const relationsListIds = populatedEntity[targetField].map(prop('id'));
 

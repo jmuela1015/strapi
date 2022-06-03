@@ -8,6 +8,8 @@ const getDialectClass = client => {
       return require('./mysql');
     case 'sqlite':
       return require('./sqlite');
+    case 'mssql':
+      return require('./mssql');
     default:
       throw new Error(`Unknown dialect ${client}`);
   }
