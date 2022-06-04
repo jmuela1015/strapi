@@ -34,7 +34,7 @@
     "date-fns": "2.22.1",
     "debug": "4.3.1",
     "fs-extra": "10.0.0",
-    "knex": "://github.com/jmuela1015/knex#0.95.6_1-luma",
+    "knex": "https://github.com/jmuela1015/knex/archive/refs/tags/0.95.5_1-luma.tar.gz",
     "lodash": "4.17.21",
     "umzug": "2.3.0"
   },
