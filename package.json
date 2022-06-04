@@ -1,4 +1,5 @@
 {
+  "version": "4.0.7_luma",
   "name": "strapi",
   "private": true,
   "bugs": {
