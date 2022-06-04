@@ -81,7 +81,7 @@
     "@koa/cors": "3.1.0",
     "@koa/router": "10.1.1",
     "@strapi/admin": "4.0.7",
-    "@strapi/database": "http://github.com/jmuela1015/strapi#v4.0.7-database-luma",
+    "@strapi/database": "http://github.com/jmuela1015/strapi#v4.0.7_1-database-luma",
     "@strapi/generate-new": "4.0.7",
     "@strapi/generators": "4.0.7",
     "@strapi/logger": "4.0.7",
